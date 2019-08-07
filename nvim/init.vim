@@ -18,8 +18,7 @@ Plug 'othree/html5.vim'
 Plug 'wincent/command-t',  {
     \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
     \ }
-Plug 'mileszs/ack.vim'
-Plug 'sjbach/lusty'
+Plug 'mhinz/vim-grepper'
 Plug 'tpope/vim-fugitive'
 Plug 'fatih/vim-go'
 Plug 'tpope/tpope-vim-abolish'
@@ -123,22 +122,11 @@ let g:CommandTWildIgnore=&wildignore . ",*.pyc,*.a,*.snap,*/vendor,*/dist"
 let g:CommandTMaxFiles=500000
 let g:CommandTFileScanner='git'
 
-"Ack use ag if installed
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --path-to-ignore ~/.ignore'
-endif
-
-"Ack Plugin shortcut
-nmap <leader>a :Ack ""<Left>
-
-"Ack on current cursor word
-nmap <leader>A :Ack <C-r><C-w><CR>
-
-"Lusty hide errors
-set hidden
-
-"Lusty load in memory before LustyBufferGrep
-nmap <leader>lg :bufdo edit<CR>:LustyBufferGrep<CR>
+"vim-grepper Config
+nmap <leader>a :GrepperAg ""<Left>
+nmap <leader>A :GrepperAg <C-r><C-w><CR>
+nmap <leader>g :Grepper<CR>
+nmap <leader>lg :Grepper-buffers<CR>
 
 "VimFiler
 let g:vimfiler_as_default_explorer = 1
@@ -273,6 +261,10 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+"vim-bufkill Config
+let g:BufKillCreateMappings=0
+
 
 
 color jellybeans
