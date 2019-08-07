@@ -26,6 +26,7 @@ Plug 'tpope/tpope-vim-abolish'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'pangloss/vim-javascript'
@@ -54,6 +55,7 @@ set laststatus=2
 set backspace=2
 set t_Co=256
 set clipboard=unnamedplus
+set encoding=UTF-8
 syntax on
 
 set shell=/usr/local/bin/zsh
