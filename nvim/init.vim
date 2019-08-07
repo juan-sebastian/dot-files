@@ -120,7 +120,8 @@ map g# <Plug>(incsearch-nohl-g#)
 
 "Command-t filter some file types
 let g:CommandTWildIgnore=&wildignore . ",*.pyc,*.a,*.snap,*/vendor,*/dist"
-let g:CommandTMaxFiles=200000
+let g:CommandTMaxFiles=500000
+let g:CommandTFileScanner='git'
 
 "Ack use ag if installed
 if executable('ag')
