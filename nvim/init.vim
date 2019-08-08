@@ -43,6 +43,7 @@ Plug 'venantius/vim-cljfmt'
 Plug 'clojure-vim/async-clj-omni'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rhubarb'
+Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 filetype plugin on
