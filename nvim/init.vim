@@ -54,7 +54,7 @@ set nu
 set laststatus=2
 set backspace=2
 set t_Co=256
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 set encoding=UTF-8
 syntax on
 
@@ -73,7 +73,8 @@ let g:ale_linters = {
 \	'javascript': ['eslint'],
 \	'go': ['gopls'],
 \	'yaml': ['yamllint'],
-\	'cpp': ['clang', 'clangtidy']
+\	'cpp': ['clang', 'clangtidy'],
+\	'sh': ['language_server']
 \}
 
 let g:ale_echo_msg_format='[%linter%] %code: %%s'
@@ -215,6 +216,9 @@ endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
 
 augroup mygroup
   autocmd!
