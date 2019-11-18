@@ -36,11 +36,8 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-clojure-static'
 Plug 'guns/vim-clojure-highlight'
-Plug 'snoe/clj-refactor.nvim'
-Plug 'markwoodhall/vim-figwheel'
-Plug 'vim-scripts/paredit.vim'
+Plug 'kovisoft/paredit'
 Plug 'venantius/vim-cljfmt'
-Plug 'clojure-vim/async-clj-omni'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rhubarb'
 Plug 'terryma/vim-multiple-cursors'
@@ -74,7 +71,8 @@ let g:ale_linters = {
 \	'go': ['gopls'],
 \	'yaml': ['yamllint'],
 \	'cpp': ['clang', 'clangtidy'],
-\	'sh': ['language_server']
+\	'sh': ['language_server'],
+\	'clojure': ['clj-kondo']
 \}
 
 let g:ale_echo_msg_format='[%linter%] %code: %%s'
