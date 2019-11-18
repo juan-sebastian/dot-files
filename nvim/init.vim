@@ -36,9 +36,9 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-clojure-static'
 Plug 'guns/vim-clojure-highlight'
-Plug 'kovisoft/paredit'
+Plug 'eraserhd/parinfer-rust', {'do':
+        \  'cargo build --release'}
 Plug 'venantius/vim-cljfmt'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rhubarb'
 Plug 'terryma/vim-multiple-cursors'
 
