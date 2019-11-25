@@ -72,13 +72,14 @@ let g:ale_linters = {
 \	'yaml': ['yamllint'],
 \	'cpp': ['clang', 'clangtidy'],
 \	'sh': ['language_server'],
-\	'clojure': ['clj-kondo']
+\	'clojure': ['clj-kondo'],
+\	'proto': ['protoc-gen-lint']
 \}
 
 let g:ale_echo_msg_format='[%linter%] %code: %%s'
 let g:ale_cpp_clang_options='-std=c++17 -Wall'
 "let g:ale_cpp_clangtidy_executable='/usr/local/opt/llvm/bin/clang-tidy'
-let g:ale_go_golangci_lint_options=''
+let g:ale_proto_protoc_gen_lint_options='-I /usr/local/include'
 
 " Comment Toggle Uses NERDCommenter
 nmap \\ <leader>c<space>
