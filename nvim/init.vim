@@ -74,7 +74,8 @@ let g:ale_linters = {
 \	'cpp': ['clang', 'clangtidy'],
 \	'sh': ['language_server'],
 \	'clojure': ['clj-kondo'],
-\	'proto': ['protoc-gen-lint']
+\	'proto': ['protoc-gen-lint'],
+\	'dockerfile': ['hadolint']
 \}
 
 let g:ale_echo_msg_format='[%linter%] %code: %%s'
