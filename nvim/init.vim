@@ -25,6 +25,7 @@ Plug 'tpope/tpope-vim-abolish'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
+"Plug 'Shougo/defx.nvim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'MattesGroeger/vim-bookmarks'
@@ -268,6 +269,10 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 "vim-bufkill Config
 let g:BufKillCreateMappings=0
+
+"Cljfmt Config
+let g:clj_fmt_autosave = 0
+
 
 
 
