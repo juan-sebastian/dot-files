@@ -42,6 +42,7 @@ Plug 'eraserhd/parinfer-rust', {'do':
 Plug 'venantius/vim-cljfmt'
 Plug 'tpope/vim-rhubarb'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-obsession'
 
 call plug#end()
 filetype plugin on
