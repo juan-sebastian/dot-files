@@ -127,10 +127,11 @@ let g:CommandTMaxFiles=500000
 let g:CommandTFileScanner='git'
 
 "vim-grepper Config
-nmap <leader>a :GrepperAg ""<Left>
-nmap <leader>A :GrepperAg <C-r><C-w><CR>
-nmap <leader>g :Grepper<CR>
-nmap <leader>lg :Grepper-buffers<CR>
+nmap <leader>a :Grepper -tool ag<CR>
+nmap <leader>A :Grepper -tool ag -switch -cword -noprompt<CR>
+nmap <leader>lg :Grepper-buffers -tool ag<CR>
+nmap <leader>lG :Grepper-buffers -tool ag -switch -cword -noprompt<CR>
+
 
 "VimFiler
 let g:vimfiler_as_default_explorer = 1
