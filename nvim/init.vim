@@ -25,7 +25,6 @@ Plug 'tpope/tpope-vim-abolish'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
-"Plug 'Shougo/defx.nvim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'MattesGroeger/vim-bookmarks'
@@ -34,12 +33,15 @@ Plug 'mxw/vim-jsx'
 Plug 'luochen1990/rainbow'
 Plug 'rhysd/vim-clang-format'
 Plug 'guns/xterm-color-table.vim'
-Plug 'tpope/vim-fireplace'
+" Depency for vim-iced
+Plug 'guns/vim-sexp',    {'for': 'clojure'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'liquidz/vim-iced', {'for': 'clojure'}
+Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
 Plug 'guns/vim-clojure-static'
 Plug 'guns/vim-clojure-highlight'
 Plug 'eraserhd/parinfer-rust', {'do':
-        \  'cargo build --release'}
-Plug 'venantius/vim-cljfmt'
+	\  'cargo build --release'}
 Plug 'tpope/vim-rhubarb'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-obsession'
@@ -273,10 +275,16 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "vim-bufkill Config
 let g:BufKillCreateMappings=0
 
-"Cljfmt Config
-let g:clj_fmt_autosave = 0
+
+" Disable python2 provider
+let g:loaded_python_provider = 0
 
 
+" Disable vim-sexp (only needs the functions for vim-iced)
+let g:sexp_filetypes = ''
+
+" Enable default mapping
+let g:iced_enable_default_key_mappings = v:true
 
 
 color jellybeans

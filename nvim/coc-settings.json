@@ -11,26 +11,7 @@
       "args": ["start"],
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
-    },
-    "clojure-lsp": {
-      "command": "bash",
-      "args": ["-c", "cd /Users/juan/bin/clojure-lsp && lein run"],
-      "filetypes": ["clojure"],
-      "rootPatterns": ["project.clj"],
-      "additionalSchemes": ["jar", "zipfile"],
-      "trace.server": "verbose",
-      "initializationOptions": {
-        "cljfmt": {
-          "indents": {
-            "#.*": [["block", 0]],
-            "ns": [["inner", 0], ["inner", 1]],
-            "and": [["inner", 0]],
-            "or": [["inner", 0]],
-            "are": [["inner", 0]]
-          }
-        }
-      }
     }
-  }
-
+  },
+  "coc.source.iced.enable": true
 }
