@@ -45,6 +45,7 @@ Plug 'eraserhd/parinfer-rust', {'do':
 Plug 'tpope/vim-rhubarb'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-obsession'
+Plug 'bakpakin/fennel.vim'
 
 call plug#end()
 filetype plugin on
@@ -282,9 +283,5 @@ let g:loaded_python_provider = 0
 
 " Disable vim-sexp (only needs the functions for vim-iced)
 let g:sexp_filetypes = ''
-
-" Enable default mapping
-let g:iced_enable_default_key_mappings = v:true
-
 
 color jellybeans
