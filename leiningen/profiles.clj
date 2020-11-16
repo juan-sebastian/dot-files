@@ -1,3 +1,2 @@
-{:user {:plugins [[lein-cljfmt "0.6.5"]]
-        :dependencies [[cljfmt "0.6.5"]]}
- :relp-options {:init (require 'cljfmt.core)}}
+{:user {:plugins [[lein-ancient "0.6.15"]]
+        :dependencies [[clojure-humanize "0.2.2"]]}}
