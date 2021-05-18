@@ -17,7 +17,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # Ruby
-PATH="/usr/local/lib/ruby/gems/2.7.0/bin:/usr/local/opt/ruby/bin:$PATH"
+PATH="/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$PATH"
 
 # set PATH for gnu tools
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -38,16 +38,11 @@ PATH="/usr/local/Go/bin:$PATH"
  #Clang path
 #PATH="/usr/local/opt/llvm/bin":$PATH
 
-# Heetch path
-PATH=$GOPATH/src/github.com/heetch/universe/bin:$GOPATH/src/github.com/heetch/universe/vendor/bin:$PATH
-
 # Iced (Clojure repl) path
 PATH=/Users/juan/.local/share/nvim/plugged/vim-iced/bin:$PATH
 
 # my bin path
 PATH="$HOME/bin:$PATH"
-
-
 
 export TERM="screen-256color"
 

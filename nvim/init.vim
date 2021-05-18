@@ -30,6 +30,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'luochen1990/rainbow'
 Plug 'rhysd/vim-clang-format'
 Plug 'guns/xterm-color-table.vim'
@@ -283,5 +284,11 @@ let g:loaded_python_provider = 0
 
 " Disable vim-sexp (only needs the functions for vim-iced)
 let g:sexp_filetypes = ''
+
+" Opens vimrc file
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+" Source vimrc file
+nnoremap <leader>es :source $MYVIMRC<cr>
 
 color jellybeans
