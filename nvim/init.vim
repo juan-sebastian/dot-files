@@ -80,7 +80,8 @@ let g:ale_linters = {
 \	'sh': ['language_server'],
 \	'clojure': ['clj-kondo'],
 \	'proto': ['protoc-gen-lint'],
-\	'dockerfile': ['hadolint']
+\	'dockerfile': ['hadolint'],
+\	'java': ['checkstyle']
 \}
 
 let g:ale_echo_msg_format='[%linter%] %code: %%s'

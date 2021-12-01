@@ -16,6 +16,9 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+# Brew sbin
+PATH="/usr/local/sbin:$PATH"
+
 # Ruby
 PATH="/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$PATH"
 
@@ -31,8 +34,6 @@ PATH="/usr/local/MacGPG2/bin:$PATH"
 # Golang
 
 export GOPATH="/usr/local/Go"
-export GO111MODULE=on
-export GOPRIVATE=github.com/heetch
 PATH="/usr/local/Go/bin:$PATH"
 
  #Clang path
