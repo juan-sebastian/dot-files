@@ -36,6 +36,10 @@ PATH="/usr/local/MacGPG2/bin:$PATH"
 export GOPATH="/usr/local/Go"
 PATH="/usr/local/Go/bin:$PATH"
 
+# Java
+export PATH="/usr/local/opt/java11/bin:$PATH"
+export JAVA_HOME="/usr/local/opt/java11/libexec/openjdk.jdk/Contents/Home"
+
  #Clang path
 #PATH="/usr/local/opt/llvm/bin":$PATH
 
