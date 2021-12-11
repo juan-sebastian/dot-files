@@ -48,6 +48,10 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-obsession'
 Plug 'bakpakin/fennel.vim'
 
+" Integrage with IntelliJ for java
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins', 'for': 'java'}
+Plug 'beeender/Comrade', {'for': 'java'}
+
 call plug#end()
 filetype plugin on
 
@@ -80,10 +84,10 @@ let g:ale_linters = {
 \	'sh': ['language_server'],
 \	'clojure': ['clj-kondo'],
 \	'proto': ['protoc-gen-lint'],
-\	'dockerfile': ['hadolint'],
-\	'java': ['checkstyle']
+\	'dockerfile': ['hadolint']
 \}
 
+let g:ale_disable_lsp = 1
 let g:ale_echo_msg_format='[%linter%] %code: %%s'
 let g:ale_cpp_clang_options='-std=c++17 -Wall'
 "let g:ale_cpp_clangtidy_executable='/usr/local/opt/llvm/bin/clang-tidy'
@@ -291,5 +295,11 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 " Source vimrc file
 nnoremap <leader>es :source $MYVIMRC<cr>
+
+" Use IntelliJ connector for java
+autocmd FileType java let b:coc_suggest_disable = 1
+autocmd FileType java let b:ale_enabled = 0
+let g:deoplete#enable_at_startup = 1
+let g:comrade_key_fix = ''
 
 color jellybeans
