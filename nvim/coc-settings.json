@@ -1,4 +1,41 @@
 {
     "coc.source.iced.enable": true,
-    "diagnostic.displayByAle": true
+    "diagnostic.displayByAle": true,
+    "java.jdt.ls.vmargs": "-noverify -Xmx3G -XX:+UseG1GC -XX:+UseStringDeduplication",
+    "java.import.bazel.enabled": true,
+    "java.import.maven.enabled": true,
+    "java.import.exclusions": [
+        "**/.git/**",
+        "**/node_modules/**",
+        "**/.metadata/**",
+        "**/archetype-resources/**",
+        "**/META-INF/maven/**",
+        "**/.idea/**",
+        "**/.code/**",
+        "**/.vscode/**",
+        "**/.ijwb/**",
+        "**/airy_dev/**",
+        "**/dist/**",
+        "**/bazel-*/**",
+        "**/.terraform/**",
+        "**/.DS_Store/**",
+        "./cli",
+        "./docs",
+        "./frontend",
+        "./infrastructure",
+        "./integration",
+        "./lib/go",
+        "./lib/typescript",
+        "./scripts",
+        "./tools"
+    ],
+    "java.project.resourceFilters": [
+        ".git",
+        "node_modules",
+        "bazel-*"
+    ],
+    "java.bjls.log.level": "DEBUG",
+    "java.bjls.log.extended": true,
+
+    "Lua.diagnostics.disable": ["lowercase-global"]
 }
