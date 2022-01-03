@@ -80,6 +80,7 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 if [[ ! -z ${ENABLED_ASDF} ]]; then
 	. $(brew --prefix asdf)/asdf.sh
 	. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+	PROMPT=$(echo ${PROMPT} | sed -e 's/\[%\*\]/\0 (ASDF)/g')
 fi
 
 # Useful functions
