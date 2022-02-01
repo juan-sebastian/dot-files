@@ -89,10 +89,6 @@ let g:ale_cpp_clang_options='-std=c++17 -Wall'
 "let g:ale_cpp_clangtidy_executable='/usr/local/opt/llvm/bin/clang-tidy'
 let g:ale_proto_protoc_gen_lint_options='-I /usr/local/include'
 
-" Comment Toggle Uses NERDCommenter
-nmap \\ <leader>c<space>
-xmap \\ <leader>c<space>
-
 " Undo three
 let g:gundo_prefer_python3 = 1
 nmap <leader>u :GundoToggle<CR>
