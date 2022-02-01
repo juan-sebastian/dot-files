@@ -3,9 +3,9 @@ activate_asdf () {
 }
 
 sync_to_build () {
-	cd ${HOME}/airyhq/airy.build
-	git checkout develop
-	git reset --hard HEAD
+	#cd ${HOME}/airyhq/airy.build
+	#git checkout develop
+	#git reset --hard HEAD
 
 
 	cd ${HOME}/airyhq/airy.core

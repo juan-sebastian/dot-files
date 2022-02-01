@@ -1,7 +1,7 @@
 {
     "coc.source.iced.enable": true,
     "diagnostic.displayByAle": true,
-    "java.jdt.ls.vmargs": "-noverify -Xmx3G -XX:+UseG1GC -XX:+UseStringDeduplication",
+    "java.jdt.ls.vmargs": "-noverify -Xmx3G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:/Users/juan/.config/coc/extensions/coc-java-data/server/plugins/lombok-1.18.22.jar",
     "java.import.bazel.enabled": true,
     "java.import.maven.enabled": true,
     "java.import.exclusions": [
