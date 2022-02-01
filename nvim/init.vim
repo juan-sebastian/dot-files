@@ -44,7 +44,7 @@ Plug 'guns/vim-clojure-highlight'
 Plug 'eraserhd/parinfer-rust', {'do':
 	\  'cargo build --release'}
 Plug 'tpope/vim-rhubarb'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-obsession'
 Plug 'bakpakin/fennel.vim'
 
