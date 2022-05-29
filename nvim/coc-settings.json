@@ -37,5 +37,18 @@
     "java.bjls.log.level": "DEBUG",
     "java.bjls.log.extended": true,
 
-    "Lua.diagnostics.disable": ["lowercase-global"]
+    "Lua.diagnostics.disable": ["lowercase-global"],
+
+    "go.goplsOptions": {
+        "experimentalWorkspaceModule": true
+    },
+
+    "languageserver": {
+      "terraform": {
+        "command": "terraform-ls",
+        "args": ["serve"],
+        "filetypes": ["terraform", "tf"],
+        "initializationOptions": {}
+      }
+    }
 }

@@ -47,6 +47,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-obsession'
 Plug 'bakpakin/fennel.vim'
+Plug 'hashivim/vim-terraform'
+Plug 'github/copilot.vim'
 
 call plug#end()
 filetype plugin on
