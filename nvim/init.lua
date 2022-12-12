@@ -161,10 +161,10 @@ vim.call('vimfiler#custom#profile',
 	'default',
 	'context',
 	{['safe'] = 0,
-   ['explorer'] = 1,
-   ['toggle'] = 1,
-   ['columns'] = 'type',
-   ['status'] = 1})
+	 ['explorer'] = 1,
+	 ['toggle'] = 1,
+	 ['columns'] = 'type',
+	 ['status'] = 1})
 
 map('n', '<leader>f', ':VimFilerExplore<CR>')
 map('n', '<leader>ff', ':VimFilerExplore -find<CR>')
