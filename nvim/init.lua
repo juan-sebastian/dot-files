@@ -49,6 +49,8 @@ vim.call('plug#end')
 
 -- TODO: Remove default ones
 vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.updatetime = 300
 vim.opt.swapfile = false
 vim.opt.number = true
 vim.opt.laststatus = 2
@@ -137,3 +139,72 @@ require('wincent.commandt').setup()
 map('n', '<Leader>b', '<Plug>(CommandTBuffer)')
 map('n', '<Leader>j', '<Plug>(CommandTJump)')
 map('n', '<Leader>t', '<Plug>(CommandT)')
+
+
+-- vim-grepper Config
+map('n', '<leader>a', ':Grepper -tool ag<CR>')
+map('n', '<leader>A', ':Grepper -tool ag -switch -cword -noprompt<CR>')
+map('n', '<leader>lg', ':Grepper-buffers -tool ag<CR>')
+map('n', '<leader>lG', ':Grepper-buffers -tool ag -switch -cword -noprompt<CR>')
+
+-- VimFiler
+vim.g.vimfiler_as_default_explorer = 1
+vim.g.vimfiler_define_wrapper_commands = 1
+vim.g.vimfiler_tree_leaf_icon = '¦'
+vim.g.vimfiler_tree_opened_icon = '▼'
+vim.g.vimfiler_tree_closed_icon = '▷'
+vim.g.vimfiler_file_icon = '-'
+vim.g.vimfiler_readonly_file_icon = '*'
+vim.g.vimfiler_marked_file_icon = '√'
+
+vim.call('vimfiler#custom#profile',
+	'default',
+	'context',
+	{['safe'] = 0,
+   ['explorer'] = 1,
+   ['toggle'] = 1,
+   ['columns'] = 'type',
+   ['status'] = 1})
+
+map('n', '<leader>f', ':VimFilerExplore<CR>')
+map('n', '<leader>ff', ':VimFilerExplore -find<CR>')
+map('n', '<leader>^', ':edit %:h<CR>')
+
+
+-- Rainbow
+vim.g.rainbow_active = 1
+vim.g.rainbow_conf = {
+	['guifgs'] = {'royalblue3', 'darkorchid3', 'seagreen3', 'firebrick3'},
+	['operators'] = '',
+	['ctermfgs'] = {27, 127, 49, 160},
+	['parentheses'] = {[[start=/(/ end=/)/ fold]], [[start=/\[/ end=/\]/ fold]], [[start=/{/ end=/}/ fold]]}}
+
+-- Vim-Bookmark
+vim.call('unite#custom#profile',
+	'source/vim_bookmarks',
+	'context',
+	{['winheight'] = 13,
+	 ['direction'] = 'botright',
+	 ['start_insert'] = 0})
+
+-- vim-bufkill Config
+vim.g.BufKillCreateMappings = 0
+
+
+-- Disable python2 provider
+vim.g.loaded_python_provider = 0
+
+
+-- Disable vim-sexp (only needs the functions for vim-iced)
+vim.g.sexp_filetypes = ''
+
+-- Opens vimrc file
+map('n', '<leader>ev', ':vsplit $MYVIMRC<CR>')
+
+-- Source vimrc file
+map('n', '<leader>es', ':source $MYVIMRC<CR>')
+
+-- Coc config
+require('vim_config.coc')
+
+vim.cmd('color jellybeans')
