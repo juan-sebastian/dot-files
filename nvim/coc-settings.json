@@ -1,4 +1,6 @@
 {
     "coc.source.iced.enable": true,
-    "diagnostic.displayByAle": true
+    "diagnostic.displayByAle": true,
+    "Lua.telemetry.enable": false,
+    "sumneko-lua.enableNvimLuaDev": true
 }
