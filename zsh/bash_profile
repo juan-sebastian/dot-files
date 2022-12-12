@@ -49,7 +49,12 @@ PATH="$HOME/bin:$PATH"
 export TERM="screen-256color"
 
 # Clean PATH
-#export PATH=$(perl -e 'use List::MoreUtils qw(uniq); print join(":", uniq(split(/:/, %ENV{'PATH'})))')
+perl -e 'use List::MoreUtils'
+if [[ $? -eq 0 ]]; then
+	export PATH=$(perl -e 'use List::MoreUtils qw(uniq); print join(":", uniq(split(/:/, %ENV{'PATH'})))')
+else
+	>&2 echo "List::MoreUtils module is not installed"
+fi
 
 # UTF-8 lang
 export LC_ALL=en_US.UTF-8
