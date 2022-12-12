@@ -1,6 +1,3 @@
-set nocompatible              " required
-filetype off                  " required
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'junegunn/vim-plug'
@@ -51,7 +48,6 @@ Plug 'hashivim/vim-terraform'
 Plug 'github/copilot.vim'
 
 call plug#end()
-filetype plugin on
 
 set nobackup
 set noswapfile
