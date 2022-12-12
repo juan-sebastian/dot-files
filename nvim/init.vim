@@ -47,6 +47,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-obsession'
 Plug 'bakpakin/fennel.vim'
+Plug 'hashivim/vim-terraform'
+Plug 'github/copilot.vim'
 
 call plug#end()
 filetype plugin on
@@ -123,6 +125,7 @@ map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
 "Command-t filter some file types
+let g:CommandTPreferredImplementation='ruby'
 let g:CommandTWildIgnore=&wildignore . ",*.pyc,*.a,*.snap,*/vendor,*/dist"
 let g:CommandTMaxFiles=500000
 let g:CommandTFileScanner='git'
@@ -184,18 +187,22 @@ let g:go_def_mapping_enabled = 0
 
 "Coc config
 
-" Some servers have issues with backup files, see #649
+" Some servers have issues with backup files, see #649.
+set nobackup
 set nowritebackup
 
-" Smaller updatetime for CursorHold & CursorHoldI
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
 set updatetime=300
 
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
