@@ -126,6 +126,8 @@ map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
 "Command-t filter some file types
+let g:CommandTPreferredImplementation='ruby'
+"let g:CommandTPreferredImplementation='lua'
 let g:CommandTWildIgnore=&wildignore . ",*.pyc,*.a,*.snap,*/vendor,*/dist"
 let g:CommandTMaxFiles=500000
 let g:CommandTFileScanner='git'
