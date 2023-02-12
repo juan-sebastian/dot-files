@@ -16,35 +16,37 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# Brew sbin
-PATH="/usr/local/sbin:$PATH"
+# Brew prefix
+BREW_PREFIX=$(PATH=/opt/homebrew/bin:/usr/local/bin:${PATH} brew --prefix)
 
-# set PATH for gnu tools
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
-PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+# Brew bin
+PATH="${BREW_PREFIX}/bin:${BREW_PREFIX}/bin:${PATH}"
+
+# Set PATH for gnu tools
+PATH="${BREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
+PATH="${BREW_PREFIX}/opt/findutils/libexec/gnubin:${PATH}"
+PATH="${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin:${PATH}"
+PATH="${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${PATH}"
 
 # Ruby
-RUBY_VERSION=$(cd /usr/local/lib/ruby/gems/ && ls --time=creation -t | head -1)
-PATH="/usr/local/lib/ruby/gems/$RUBY_VERSION/bin:/usr/local/opt/ruby/bin:$PATH"
+RUBY_VERSION=$(cd ${BREW_PREFIX}/lib/ruby/gems/ && ls --time=creation -t | head -1)
+PATH="${BREW_PREFIX}/lib/ruby/gems/${RUBY_VERSION}/bin:${BREW_PREFIX}/opt/ruby/bin:${PATH}"
 
-# set PATH for gpg2
-PATH="/usr/local/MacGPG2/bin:$PATH"
+# Set PATH for gpg2
+PATH="/usr/local/MacGPG2/bin:${PATH}"
 
 # Golang
-
 export GOPATH="/usr/local/Go"
-PATH="/usr/local/Go/bin:$PATH"
+PATH="/usr/local/Go/bin:${PATH}"
 
  #Clang path
 #PATH="/usr/local/opt/llvm/bin":$PATH
 
 # Iced (Clojure repl) path
-PATH=/Users/juan/.local/share/nvim/plugged/vim-iced/bin:$PATH
+PATH=/Users/juan/.local/share/nvim/plugged/vim-iced/bin:${PATH}
 
 # my bin path
-PATH="$HOME/bin:$PATH"
+PATH="${HOME}/.local/bin:${PATH}"
 
 export TERM="screen-256color"
 
@@ -86,11 +88,11 @@ if [[ ! -z ${ENABLED_ASDF} ]]; then
 fi
 
 # Useful functions
-if [[ -f $HOME/.functions.bash ]]; then
-	. $HOME/.functions.bash
+if [[ -f ${HOME}/.functions.bash ]]; then
+	. ${HOME}/.functions.bash
 fi
 
 # Useful alias
-if [[ -f $HOME/.alias.bash ]]; then
-	. $HOME/.alias.bash
+if [[ -f ${HOME}/.alias.bash ]]; then
+	. ${HOME}/.alias.bash
 fi
