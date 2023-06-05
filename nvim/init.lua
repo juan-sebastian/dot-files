@@ -29,7 +29,8 @@ Plug('mxw/vim-jsx')
 Plug('HerringtonDarkholme/yats.vim')
 Plug('luochen1990/rainbow')
 Plug('rhysd/vim-clang-format')
-Plug('guns/xrm-color-table.vim')
+--TODO: Check why it is asking for credentials
+--Plug('guns/xrm-color-table.vim')
 -- Depency for v-icd
 Plug('guns/vim-sexp',   {['for'] = 'clojure'})
 Plug('junegunn/fzf', {['do'] = vim.fn['fzf#install']})
@@ -44,6 +45,9 @@ Plug('tpope/vim-obsession')
 Plug('bakpakin/fennel.vim')
 Plug('hashivim/vim-terraform')
 Plug('github/copilot.vim')
+
+Plug('voldikss/vim-floaterm')
+Plug('waxdred/Term_ChatGPT', {['do'] = './install.sh'})
 
 vim.call('plug#end')
 
