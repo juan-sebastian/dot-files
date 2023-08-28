@@ -20,18 +20,15 @@ Plug('fatih/vim-go')
 Plug('tpope/tpope-vim-abolish')
 Plug('qpkorr/vim-bufkill')
 Plug('Shougo/unite.vim')
-Plug('Shougo/vimfiler.vim')
-Plug('ryanoasis/vim-devicons')
-Plug('neoclide/coc.nvim', {['branch'] = 'release'})
 Plug('MattesGroeger/vim-bookmarks')
+Plug('luukvbaal/nnn.nvim')
+Plug('neoclide/coc.nvim', {['branch'] = 'release'})
 Plug('pangloss/vim-javascript')
 Plug('mxw/vim-jsx')
 Plug('HerringtonDarkholme/yats.vim')
 Plug('luochen1990/rainbow')
 Plug('sQVe/sort.nvim')
 Plug('rhysd/vim-clang-format')
---TODO: Check why it is asking for credentials
---Plug('guns/xrm-color-table.vim')
 -- Depency for v-icd
 Plug('guns/vim-sexp',   {['for'] = 'clojure'})
 Plug('junegunn/fzf', {['do'] = vim.fn['fzf#install']})
@@ -157,29 +154,10 @@ map('n', '<leader>A', ':Grepper -tool ag -switch -cword -noprompt<CR>')
 map('n', '<leader>lg', ':Grepper-buffers -tool ag<CR>')
 map('n', '<leader>lG', ':Grepper-buffers -tool ag -switch -cword -noprompt<CR>')
 
--- VimFiler
-vim.g.vimfiler_as_default_explorer = 1
-vim.g.vimfiler_define_wrapper_commands = 1
-vim.g.vimfiler_tree_leaf_icon = '¦'
-vim.g.vimfiler_tree_opened_icon = '▼'
-vim.g.vimfiler_tree_closed_icon = '▷'
-vim.g.vimfiler_file_icon = '-'
-vim.g.vimfiler_readonly_file_icon = '*'
-vim.g.vimfiler_marked_file_icon = '√'
-
-vim.call('vimfiler#custom#profile',
-	'default',
-	'context',
-	{['safe'] = 0,
-	 ['explorer'] = 1,
-	 ['toggle'] = 1,
-	 ['columns'] = 'type',
-	 ['status'] = 1})
-
-map('n', '<leader>f', ':VimFilerExplore<CR>')
-map('n', '<leader>ff', ':VimFilerExplore -find<CR>')
-map('n', '<leader>^', ':edit %:h<CR>')
-
+--- nnn
+require('nnn').setup()
+map('n', '<leader>ff', ':NnnPicker %:p:h<CR>')
+map('n', '<leader>^', ':NnnPicker %:h<CR>')
 
 -- Rainbow
 vim.g.rainbow_active = 1
