@@ -87,6 +87,23 @@ if [[ ! -z ${ENABLED_ASDF} ]]; then
 	PROMPT=$(echo ${PROMPT} | sed -e 's/\[%\*\]/\0 (ASDF)/g')
 fi
 
+# NVM config
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+
+# AWS Useful
+export AWS_PROFILE=ewego-stage
+export CDK_DEFAULT_ACCOUNT=ewego-stage
+export CDK_DEFAULT_REGION=eu-central-1
+export STAGE=dev
+PROMPT=$(echo ${PROMPT} | sed -e 's/\[%\*\]/(${AWS_PROFILE}\/${STAGE}) \0/g')
+
+# 1Password CLI
+source ~/.config/op/plugins.sh
+eval "$(op completion zsh)"; compdef _op op
+
 # Useful functions
 if [[ -f ${HOME}/.functions.bash ]]; then
 	. ${HOME}/.functions.bash
@@ -95,4 +112,9 @@ fi
 # Useful alias
 if [[ -f ${HOME}/.alias.bash ]]; then
 	. ${HOME}/.alias.bash
+fi
+
+# Useful exports
+if [[ -f ${HOME}/.exports.bash ]]; then
+	. ${HOME}/.exports.bash
 fi

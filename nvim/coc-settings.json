@@ -2,5 +2,6 @@
     "coc.source.iced.enable": true,
     "diagnostic.displayByAle": true,
     "Lua.telemetry.enable": false,
+    "Lua.workspace.library": ["/Users/juan/.hammerspoon/Spoons/EmmyLua.spoon/annotations"],
     "sumneko-lua.enableNvimLuaDev": true
 }

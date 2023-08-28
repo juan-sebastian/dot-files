@@ -28,6 +28,7 @@ Plug('pangloss/vim-javascript')
 Plug('mxw/vim-jsx')
 Plug('HerringtonDarkholme/yats.vim')
 Plug('luochen1990/rainbow')
+Plug('sQVe/sort.nvim')
 Plug('rhysd/vim-clang-format')
 --TODO: Check why it is asking for credentials
 --Plug('guns/xrm-color-table.vim')
@@ -46,10 +47,14 @@ Plug('bakpakin/fennel.vim')
 Plug('hashivim/vim-terraform')
 Plug('github/copilot.vim')
 
-Plug('voldikss/vim-floaterm')
-Plug('waxdred/Term_ChatGPT', {['do'] = './install.sh'})
+Plug('MunifTanjim/nui.nvim')
+Plug('nvim-lua/plenary.nvim')
+Plug('nvim-telescope/telescope.nvim')
+Plug('jackMort/ChatGPT.nvim')
 
 vim.call('plug#end')
+
+require("chatgpt").setup()
 
 -- TODO: Remove default ones
 vim.opt.backup = false
@@ -61,7 +66,7 @@ vim.opt.laststatus = 2
 vim.opt.backspace = 'indent,eol,start'
 vim.opt.clipboard:append {'unnamedplus'}
 vim.opt.encoding = 'UTF-8'
-vim.opt.shell = '/usr/local/bin/zsh'
+vim.opt.shell = '/opt/homebrew/bin/zsh'
 
 vim.api.nvim_command('syntax on')
 
@@ -90,6 +95,7 @@ vim.g.airline_powerline_fonts = 1
 vim.g.ale_linters = {
 	['python'] = {'flake8'},
 	['javascript'] = {'eslint'},
+	['typescript'] = {'eslint'},
 	['go'] = {'gopls'},
 	['yaml'] = {'yamllint'},
 	['cpp'] = {'clang', 'clangtidy'},
@@ -207,6 +213,11 @@ map('n', '<leader>ev', ':vsplit $MYVIMRC<CR>')
 
 -- Source vimrc file
 map('n', '<leader>es', ':source $MYVIMRC<CR>')
+
+-- Copilot config
+vim.g.copilot_filetypes = {
+  ['gitcommit'] = true,
+}
 
 -- Coc config
 require('vim_config.coc')
