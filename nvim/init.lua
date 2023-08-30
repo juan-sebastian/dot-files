@@ -48,9 +48,13 @@ Plug('MunifTanjim/nui.nvim')
 Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim')
 Plug('jackMort/ChatGPT.nvim')
+Plug('piersolenski/wtf.nvim')
+Plug('folke/todo-comments.nvim')
 
 vim.call('plug#end')
 
+require('wtf').setup()
+require('todo-comments').setup()
 require("chatgpt").setup()
 
 -- TODO: Remove default ones

@@ -87,6 +87,11 @@ if [[ ! -z ${ENABLED_ASDF} ]]; then
 	PROMPT=$(echo ${PROMPT} | sed -e 's/\[%\*\]/\0 (ASDF)/g')
 fi
 
+# NNN config
+export NNN_PLUG='f:finder;o:fzopen;j:jump'
+export NNN_FCOLORS='0000E6310000000000000000'
+export NNN_FIFO=/tmp/nnn.fifo
+
 # NVM config
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
