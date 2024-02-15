@@ -51,11 +51,16 @@ Plug('jackMort/ChatGPT.nvim')
 Plug('piersolenski/wtf.nvim')
 Plug('folke/todo-comments.nvim')
 
+Plug('nvim-lua/plenary.nvim')
+Plug('stevearc/dressing.nvim')
+Plug('akinsho/flutter-tools.nvim')
+
 vim.call('plug#end')
 
 require('wtf').setup()
 require('todo-comments').setup()
 require("chatgpt").setup()
+require("flutter-tools").setup {}
 
 -- TODO: Remove default ones
 vim.opt.backup = false
