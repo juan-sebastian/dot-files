@@ -50,13 +50,11 @@ PATH="${HOME}/.local/bin:${PATH}"
 
 export TERM="screen-256color"
 
+# Set PATH for HammerSpoon CLI
+export PATH="/Applications/Hammerspoon.app/Contents/Frameworks/hs:${PATH}"
+
 # Clean PATH
-perl -e 'use List::MoreUtils'
-if [[ $? -eq 0 ]]; then
-	export PATH=$(perl -e 'use List::MoreUtils qw(uniq); print join(":", uniq(split(/:/, %ENV{'PATH'})))')
-else
-	>&2 echo "List::MoreUtils module is not installed"
-fi
+export PATH=$(bb -e '(println (clojure.string/join ":" (distinct (clojure.string/split (System/getenv "PATH") #":"))))')
 
 # UTF-8 lang
 export LC_ALL=en_US.UTF-8

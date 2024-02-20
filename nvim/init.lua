@@ -34,14 +34,11 @@ Plug('guns/vim-sexp',   {['for'] = 'clojure'})
 Plug('junegunn/fzf', {['do'] = vim.fn['fzf#install']})
 Plug('liquidz/vim-iced', {['for'] = 'clojure'})
 Plug('liquidz/vim-iced-coc-source', {['for'] = 'clojure'})
-Plug('guns/vim-clojure-static')
-Plug('guns/vim-clojure-highlight')
 Plug('eraserhd/parinfer-rust', {['do'] = 'cargo build --release'})
 Plug('tpope/vim-rhubarb')
 Plug('mg979/vim-visual-multi', {['branch'] = 'master'})
 Plug('tpope/vim-obsession')
 Plug('bakpakin/fennel.vim')
-Plug('hashivim/vim-terraform')
 Plug('github/copilot.vim')
 
 Plug('MunifTanjim/nui.nvim')
@@ -54,6 +51,8 @@ Plug('folke/todo-comments.nvim')
 Plug('nvim-lua/plenary.nvim')
 Plug('stevearc/dressing.nvim')
 Plug('akinsho/flutter-tools.nvim')
+
+Plug('folke/which-key.nvim')
 
 vim.call('plug#end')
 
@@ -79,6 +78,9 @@ vim.api.nvim_command('syntax on')
 
 -- Leader key mapping
 vim.g.mapleader = ','
+
+-- Which key config
+require('which-key').setup {}
 
 
 -- map function
@@ -150,11 +152,24 @@ map('', 'g#', '<Plug>(incsearch-nohl-g#)')
 
 
 -- Command-t filter some file types
-vim.g.CommandTPreferredImplementation = 'lua'
 require('wincent.commandt').setup()
+
+vim.g.CommandTPreferredImplementation = 'lua'
+vim.g.CommandTWildIgnore = vim.o.wildignore
+ .. ',*/.git/*'
+ .. ',*/node_modules/*'
+ .. ',*/target/*'
+ .. ',*/dist/*'
+ .. ',*/build/*'
+
+function CommandTSelector()
+	local command = vim.fn.system('bb ' .. vim.fn.stdpath('config') .. '/babashka/command-t-selector.clj')
+	vim.cmd(command)
+end
+
 map('n', '<Leader>b', '<Plug>(CommandTBuffer)')
 map('n', '<Leader>j', '<Plug>(CommandTJump)')
-map('n', '<Leader>t', '<Plug>(CommandT)')
+map('n', '<leader>t', ':lua CommandTSelector()<CR>')
 
 
 -- vim-grepper Config
@@ -194,6 +209,7 @@ vim.g.loaded_python_provider = 0
 
 -- Disable vim-sexp (only needs the functions for vim-iced)
 vim.g.sexp_filetypes = ''
+vim.g.iced_enable_default_key_mappings = 1
 
 -- Opens vimrc file
 map('n', '<leader>ev', ':vsplit $MYVIMRC<CR>')
