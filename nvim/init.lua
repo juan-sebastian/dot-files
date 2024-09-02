@@ -1,60 +1,97 @@
-local Plug = vim.fn['plug#']
-vim.call('plug#begin', '~/.local/share/nvim/plugged')
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-Plug('junegunn/vim-plug')
-Plug('vim-airline/vim-airline')
-Plug('vim-airline/vim-airline-themes')
-Plug('nanotech/jellybeans.vim')
-Plug('w0rp/ale')
-Plug('scrooloose/nerdcommenter')
-Plug('sjl/gundo.vim')
-Plug('godlygeek/tabular')
-Plug('easymotion/vim-easymotion')
-Plug('haya14busa/incsearch.vim')
-Plug('haya14busa/incsearch-easymotion.vim')
-Plug('othree/html5.vim')
-Plug('wincent/command-t', {['do'] = 'cd lua/wincent/commandt/lib && make'})
-Plug('mhinz/vim-grepper')
-Plug('tpope/vim-fugitive')
-Plug('fatih/vim-go')
-Plug('tpope/tpope-vim-abolish')
-Plug('qpkorr/vim-bufkill')
-Plug('Shougo/unite.vim')
-Plug('MattesGroeger/vim-bookmarks')
-Plug('luukvbaal/nnn.nvim')
-Plug('neoclide/coc.nvim', {['branch'] = 'release'})
-Plug('pangloss/vim-javascript')
-Plug('mxw/vim-jsx')
-Plug('HerringtonDarkholme/yats.vim')
-Plug('luochen1990/rainbow')
-Plug('sQVe/sort.nvim')
-Plug('rhysd/vim-clang-format')
--- Depency for v-icd
-Plug('guns/vim-sexp',   {['for'] = 'clojure'})
-Plug('junegunn/fzf', {['do'] = vim.fn['fzf#install']})
-Plug('liquidz/vim-iced', {['for'] = 'clojure'})
-Plug('liquidz/vim-iced-coc-source', {['for'] = 'clojure'})
-Plug('eraserhd/parinfer-rust', {['do'] = 'cargo build --release'})
-Plug('tpope/vim-rhubarb')
-Plug('mg979/vim-visual-multi', {['branch'] = 'master'})
-Plug('tpope/vim-obsession')
-Plug('bakpakin/fennel.vim')
-Plug('github/copilot.vim')
-
-Plug('MunifTanjim/nui.nvim')
-Plug('nvim-lua/plenary.nvim')
-Plug('nvim-telescope/telescope.nvim')
-Plug('jackMort/ChatGPT.nvim')
-Plug('piersolenski/wtf.nvim')
-Plug('folke/todo-comments.nvim')
-
-Plug('nvim-lua/plenary.nvim')
-Plug('stevearc/dressing.nvim')
-Plug('akinsho/flutter-tools.nvim')
-
-Plug('folke/which-key.nvim')
-
-vim.call('plug#end')
+-- Configure lazy.nvim
+require("lazy").setup({
+  -- Plugin specifications
+  { "vim-airline/vim-airline" },
+  { "vim-airline/vim-airline-themes" },
+  { "nanotech/jellybeans.vim" },
+  { "w0rp/ale" },
+  {
+		"preservim/nerdcommenter",
+		event = "BufReadPost",
+	},
+  { "sjl/gundo.vim" },
+  { "godlygeek/tabular" },
+  { "easymotion/vim-easymotion" },
+  { "haya14busa/incsearch.vim" },
+  { "haya14busa/incsearch-easymotion.vim" },
+  { "othree/html5.vim" },
+  {
+    "wincent/command-t",
+    build = "cd lua/wincent/commandt/lib && make",
+		init = function()
+			vim.g.CommandTPreferredImplementation = 'lua'
+		end
+  },
+  { "mhinz/vim-grepper" },
+  { "tpope/vim-fugitive" },
+  { "fatih/vim-go" },
+  { "tpope/tpope-vim-abolish" },
+  { "qpkorr/vim-bufkill" },
+  { "Shougo/unite.vim" },
+  { "MattesGroeger/vim-bookmarks" },
+  { "luukvbaal/nnn.nvim" },
+  {
+    "neoclide/coc.nvim",
+    branch = "release"
+  },
+  { "pangloss/vim-javascript" },
+  { "mxw/vim-jsx" },
+  { "HerringtonDarkholme/yats.vim" },
+  { "luochen1990/rainbow" },
+  { "sQVe/sort.nvim" },
+  { "rhysd/vim-clang-format" },
+  {
+    "guns/vim-sexp",
+    ft = "clojure"
+  },
+	-- TODO: add config installation funciton
+  {
+    "junegunn/fzf"
+  },
+  {
+    "liquidz/vim-iced",
+    ft = "clojure"
+  },
+  {
+    "liquidz/vim-iced-coc-source",
+    ft = "clojure"
+  },
+  {
+    "eraserhd/parinfer-rust",
+    build = "cargo build --release"
+  },
+  { "tpope/vim-rhubarb" },
+  {
+    "mg979/vim-visual-multi",
+    branch = "master"
+  },
+  { "tpope/vim-obsession" },
+  { "bakpakin/fennel.vim" },
+  { "github/copilot.vim" },
+  { "MunifTanjim/nui.nvim" },
+  { "nvim-lua/plenary.nvim" },
+  { "nvim-telescope/telescope.nvim" },
+  { "jackMort/ChatGPT.nvim" },
+  { "piersolenski/wtf.nvim" },
+  { "folke/todo-comments.nvim" },
+  { "stevearc/dressing.nvim" },
+  { "akinsho/flutter-tools.nvim" },
+  { "folke/which-key.nvim" },
+})
 
 require('wtf').setup()
 require('todo-comments').setup()
@@ -74,7 +111,6 @@ vim.opt.encoding = 'UTF-8'
 vim.opt.shell = '/opt/homebrew/bin/zsh'
 
 vim.api.nvim_command('syntax on')
-
 
 -- Leader key mapping
 vim.g.mapleader = ','
