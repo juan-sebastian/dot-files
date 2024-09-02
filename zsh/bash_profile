@@ -134,12 +134,6 @@ export CDK_DEFAULT_REGION=eu-central-1
 export STAGE=dev
 PROMPT=$(echo ${PROMPT} | sed -e 's/\[%\*\]/(${AWS_PROFILE}\/${STAGE}) \0/g')
 
-# 1Password CLI
-source ~/.config/op/plugins.sh
-eval "$(op completion zsh)"; compdef _op op
-
-
-
 # Useful functions
 if [[ -f ${HOME}/.functions.bash ]]; then
 	. ${HOME}/.functions.bash
