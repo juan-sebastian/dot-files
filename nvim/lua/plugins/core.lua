@@ -37,7 +37,6 @@ return {
       vim.g.BufKillCreateMappings = 0
     end,
   },
-  { "Shougo/unite.vim" },
   { "MattesGroeger/vim-bookmarks" },
     { "pangloss/vim-javascript" },
   { "mxw/vim-jsx" },
