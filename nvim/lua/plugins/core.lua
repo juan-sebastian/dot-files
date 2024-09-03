@@ -43,27 +43,9 @@ return {
   { "HerringtonDarkholme/yats.vim" },
   { "sQVe/sort.nvim" },
   { "rhysd/vim-clang-format" },
-  {
-    "guns/vim-sexp",
-    config = function()
-      vim.g.sexp_filetypes = ""
-    end,
-    ft = "clojure"
-  },
   -- TODO: add config installation funciton
   {
     "junegunn/fzf"
-  },
-  {
-    "liquidz/vim-iced",
-    init = function()
-      vim.g.iced_enable_default_key_mappings = 1
-    end,
-    ft = "clojure"
-  },
-  {
-    "liquidz/vim-iced-coc-source",
-    ft = "clojure"
   },
   {
     "eraserhd/parinfer-rust",
