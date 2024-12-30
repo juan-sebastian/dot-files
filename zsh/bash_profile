@@ -43,7 +43,7 @@ PATH="/usr/local/Go/bin:${PATH}"
 #PATH="/usr/local/opt/llvm/bin":$PATH
 
 # Iced (Clojure repl) path
-PATH=/Users/juan/.local/share/nvim/plugged/vim-iced/bin:${PATH}
+PATH=/Users/juan/.local/share/nvim/lazy/vim-iced/bin:${PATH}
 
 # my bin path
 PATH="${HOME}/.local/bin:${PATH}"
@@ -125,7 +125,6 @@ n ()
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 
 # AWS Useful
 export AWS_PROFILE=ewego-stage

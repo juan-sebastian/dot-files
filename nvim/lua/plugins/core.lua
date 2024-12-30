@@ -14,6 +14,7 @@ return {
     config = function()
       vim.cmd("colorscheme jellybeans")
     end,
+    lazy = false,
   },
   {
     "preservim/nerdcommenter",
@@ -33,7 +34,7 @@ return {
   { "tpope/tpope-vim-abolish" },
   {
     "qpkorr/vim-bufkill",
-    config = function()
+    init = function()
       vim.g.BufKillCreateMappings = 0
     end,
   },
@@ -69,12 +70,6 @@ return {
   { "MunifTanjim/nui.nvim" },
   { "nvim-lua/plenary.nvim" },
   { "nvim-telescope/telescope.nvim" },
-  {
-    "jackMort/ChatGPT.nvim",
-    config = function()
-      require("chatgpt").setup()
-    end
-  },
   {
     "piersolenski/wtf.nvim",
     config = function()

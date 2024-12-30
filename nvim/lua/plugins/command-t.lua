@@ -24,5 +24,6 @@ return {
       {"<Leader>j", mode = {"n"}, "<Plug>(CommandTJump)"},
       {"<leader>t", mode = {"n"}, ":lua CommandTSelector()<CR>"},
     },
+    lazy = false,
   },
 }

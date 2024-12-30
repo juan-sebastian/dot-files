@@ -1,4 +1,11 @@
 {
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-17",
+            "path": "/opt/homebrew/Cellar/openjdk@17/17.0.12",
+            "default": true
+        }
+    ],
     "coc.source.iced.enable": true,
     "diagnostic.displayByAle": true,
     "Lua.telemetry.enable": false,
