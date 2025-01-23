@@ -90,6 +90,9 @@ return {
     end
   },
   {
+    "nvim-tree/nvim-web-devicons"
+  },
+  {
     "folke/which-key.nvim",
     config = function()
       require("which-key").setup {}

@@ -138,7 +138,6 @@ return {
       })
     end,
     ft = "clojure",
-    lazy = false,
   },
   {
     dependencies = { "neoclide/coc.nvim", "liquidz/vim-iced" },

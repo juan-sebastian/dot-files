@@ -39,6 +39,12 @@ Map('n', '<leader>s', ':lua SpellCheckToggle()<CR>')
 -- Disable python2 provider
 vim.g.loaded_python_provider = 0
 
+-- Disable perl provider
+vim.g.loaded_perl_provider = 0
+
+-- Disable ruby provider
+vim.g.loaded_ruby_provider = 0
+
 
 -- Opens vimrc file
 Map('n', '<leader>ev', ':vsplit $MYVIMRC<CR>')

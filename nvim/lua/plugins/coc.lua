@@ -34,6 +34,7 @@ return {
       keyset("n", "ga", "<Plug>(coc-codeaction-cursor)", {silent = true})
       -- Use K to show documentation in preview window.
       function _G.show_docs()
+          print("show docs")
           local cw = vim.fn.expand('<cword>')
           if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
               vim.api.nvim_command('h ' .. cw)
