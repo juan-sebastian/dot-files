@@ -68,8 +68,6 @@ return {
     end,
   },
   { "MunifTanjim/nui.nvim" },
-  { "nvim-lua/plenary.nvim" },
-  { "nvim-telescope/telescope.nvim" },
   {
     "piersolenski/wtf.nvim",
     config = function()
