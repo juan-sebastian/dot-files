@@ -1,14 +1,20 @@
 return {
   { "folke/lazy.nvim", version = false },
   { "LazyVim/LazyVim", version = false },
-  {
-    "vim-airline/vim-airline",
+{
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" }, -- For icons
     config = function()
-      vim.g["airline#extensions#tabline#enabled"] = 1
-      vim.g.airline_powerline_fonts = 1
+      require("lualine").setup {
+        options = {
+          theme = "auto",             -- Automatically match your colorscheme
+          icons_enabled = true,       -- Enable icons (requires Nerd Font)
+          section_separators = "",    -- No separators by default
+          component_separators = "",
+        },
+      }
     end,
   },
-  { "vim-airline/vim-airline-themes" },
   {
     "nanotech/jellybeans.vim",
     config = function()

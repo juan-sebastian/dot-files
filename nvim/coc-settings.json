@@ -2,7 +2,7 @@
     "java.configuration.runtimes": [
         {
             "name": "JavaSE-17",
-            "path": "/opt/homebrew/Cellar/openjdk@17/17.0.12",
+            "path": "/opt/homebrew/opt/openjdk@17",
             "default": true
         }
     ],
@@ -10,5 +10,6 @@
     "diagnostic.displayByAle": true,
     "Lua.telemetry.enable": false,
     "Lua.workspace.library": ["/Users/juan/.hammerspoon/Spoons/EmmyLua.spoon/annotations"],
-    "sumneko-lua.enableNvimLuaDev": true
+    "sumneko-lua.enableNvimLuaDev": true,
+    "java.import.gradle.java.home": "/opt/homebrew/Cellar/openjdk@17/17.0.14/libexec/openjdk.jdk/Contents/Home"
 }
