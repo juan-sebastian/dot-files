@@ -11,5 +11,6 @@
     "Lua.telemetry.enable": false,
     "Lua.workspace.library": ["/Users/juan/.hammerspoon/Spoons/EmmyLua.spoon/annotations"],
     "sumneko-lua.enableNvimLuaDev": true,
-    "java.import.gradle.java.home": "/opt/homebrew/Cellar/openjdk@17/17.0.14/libexec/openjdk.jdk/Contents/Home"
+    "java.import.gradle.java.home": "/opt/homebrew/Cellar/openjdk@17/17.0.14/libexec/openjdk.jdk/Contents/Home",
+    "svelte.enable-ts-plugin": false
 }

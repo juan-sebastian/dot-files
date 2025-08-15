@@ -47,8 +47,10 @@ vim.g.loaded_ruby_provider = 0
 
 
 -- Opens vimrc file
-Map('n', '<leader>ev', ':vsplit $MYVIMRC<CR>')
-
--- Source vimrc file
-Map('n', '<leader>es', ':source $MYVIMRC<CR>')
+--[[
+   [Map('n', '<leader>ev', ':vsplit $MYVIMRC<CR>')
+   [
+   [-- Source vimrc file
+   [Map('n', '<leader>es', ':source $MYVIMRC<CR>')
+   ]]
 
