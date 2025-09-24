@@ -35,6 +35,13 @@ return {
   },
   { "godlygeek/tabular" },
   { "othree/html5.vim" },
+  {
+    "evanleck/vim-svelte",
+    dependencies = { "othree/html5.vim", "pangloss/vim-javascript" },
+    config = function()
+      vim.g.svelte_preprocessors = { "typescript" }
+    end,
+  },
   { "tpope/vim-fugitive" },
   { "fatih/vim-go" },
   { "tpope/tpope-vim-abolish" },
@@ -45,7 +52,7 @@ return {
     end,
   },
   { "MattesGroeger/vim-bookmarks" },
-    { "pangloss/vim-javascript" },
+  { "pangloss/vim-javascript" },
   { "mxw/vim-jsx" },
   { "HerringtonDarkholme/yats.vim" },
   { "sQVe/sort.nvim" },
@@ -92,6 +99,12 @@ return {
     config = function()
       require("flutter-tools").setup {}
     end
+  },
+{
+  'echasnovski/mini.icons',
+  config = function()
+    require('mini.icons').setup()
+  end
   },
   {
     "nvim-tree/nvim-web-devicons"

@@ -23,19 +23,6 @@ function Map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-
--- Spell checking English
-function SpellCheckToggle()
-  if vim.b.spell_check_is_on then
-    vim.opt.spell = false
-  else
-    vim.opt.spell = true
-  end
-
-  vim.b.spell_check_is_on = not vim.b.spell_check_is_on
-end
-Map('n', '<leader>s', ':lua SpellCheckToggle()<CR>')
-
 -- Disable python2 provider
 vim.g.loaded_python_provider = 0
 

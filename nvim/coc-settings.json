@@ -1,16 +1,16 @@
 {
-    "java.configuration.runtimes": [
-        {
-            "name": "JavaSE-17",
-            "path": "/opt/homebrew/opt/openjdk@17",
-            "default": true
-        }
-    ],
-    "coc.source.iced.enable": true,
-    "diagnostic.displayByAle": true,
-    "Lua.telemetry.enable": false,
-    "Lua.workspace.library": ["/Users/juan/.hammerspoon/Spoons/EmmyLua.spoon/annotations"],
-    "sumneko-lua.enableNvimLuaDev": true,
-    "java.import.gradle.java.home": "/opt/homebrew/Cellar/openjdk@17/17.0.14/libexec/openjdk.jdk/Contents/Home",
-    "svelte.enable-ts-plugin": false
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-21",
+      "path": "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home",
+      "default": true
+    }
+  ],
+  "Lua.telemetry.enable": false,
+  "Lua.workspace.library": [
+    "/Users/juan/.hammerspoon/Spoons/EmmyLua.spoon/annotations"
+  ],
+  "sumneko-lua.enableNvimLuaDev": true,
+  "java.import.gradle.java.home": "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home",
+  "svelte.enable-ts-plugin": true
 }
