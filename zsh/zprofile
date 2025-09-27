@@ -1,130 +1,172 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ -z "$BREW_PREFIX" ]]; then
+    if [[ -x /opt/homebrew/bin/brew ]]; then
+        export BREW_PREFIX="/opt/homebrew"
+    elif [[ -x /usr/local/bin/brew ]]; then
+        export BREW_PREFIX="/usr/local"
+    else
+        export BREW_PREFIX=$(brew --prefix 2>/dev/null)
+    fi
+fi
+
+if [[ -f "${BREW_PREFIX}/bin/brew" ]]; then
+    eval "$("${BREW_PREFIX}/bin/brew" shellenv)"
+fi
+
+typeset -U path_components  # -U évite les doublons automatiquement
+path_components=(
+    # Homebrew bins
+    "${BREW_PREFIX}/bin"
+    "${BREW_PREFIX}/sbin"
+
+    # GNU tools (si installés)
+    "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
+    "${BREW_PREFIX}/opt/findutils/libexec/gnubin"
+    "${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
+    "${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
+
+    # Ruby (version dynamique cachée)
+    "${BREW_PREFIX}/opt/ruby/bin"
+
+    # GPG
+    "/usr/local/MacGPG2/bin"
+
+    # Go
+    "/usr/local/Go/bin"
+
+    # Local bins
+    "${HOME}/.local/bin"
+
+    # HammerSpoon
+    "/Applications/Hammerspoon.app/Contents/Frameworks/hs"
+
+    # Système
+    "/usr/bin"
+    "/bin"
+    "/usr/sbin"
+    "/sbin"
+)
+
+filtered_path=""
+for dir in "${path_components[@]}"; do
+    if [[ -d "$dir" ]]; then
+        if [[ -z "$filtered_path" ]]; then
+            filtered_path="$dir"
+        else
+            filtered_path="${filtered_path}:${dir}"
+        fi
+    fi
+done
+export PATH="$filtered_path"
+
+if [[ -d "${BREW_PREFIX}/lib/ruby/gems" ]]; then
+    # Cache la version Ruby pour éviter ls à chaque fois
+    RUBY_CACHE_FILE="${HOME}/.cache/ruby_version"
+    if [[ ! -f "$RUBY_CACHE_FILE" ]] || [[ ! -s "$RUBY_CACHE_FILE" ]] ||
+       [[ "$RUBY_CACHE_FILE" -ot "${BREW_PREFIX}/lib/ruby/gems" ]]; then
+        mkdir -p "${HOME}/.cache"
+        RUBY_VERSION=$(ls -t "${BREW_PREFIX}/lib/ruby/gems/" 2>/dev/null | head -1)
+        echo "$RUBY_VERSION" > "$RUBY_CACHE_FILE"
+    else
+        RUBY_VERSION=$(cat "$RUBY_CACHE_FILE")
+    fi
+
+    if [[ -n "$RUBY_VERSION" && -d "${BREW_PREFIX}/lib/ruby/gems/${RUBY_VERSION}/bin" ]]; then
+        export PATH="${BREW_PREFIX}/lib/ruby/gems/${RUBY_VERSION}/bin:${PATH}"
+    fi
+fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+lazy_load_nvm() {
+    unset -f nvm node npm npx
+    if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+        source "$NVM_DIR/nvm.sh"
+        [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+    elif [[ -s "${BREW_PREFIX}/opt/nvm/nvm.sh" ]]; then
+        source "${BREW_PREFIX}/opt/nvm/nvm.sh"
+        [[ -s "${BREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ]] && \
+            source "${BREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"
+    fi
+}
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+nvm() { lazy_load_nvm; nvm "$@"; }
+node() { lazy_load_nvm; node "$@"; }
+npm() { lazy_load_nvm; npm "$@"; }
+npx() { lazy_load_nvm; npx "$@"; }
 
-# Brew prefix
-BREW_PREFIX=$(PATH=/opt/homebrew/bin:/usr/local/bin:${PATH} brew --prefix)
+export PYENV_ROOT="${HOME}/.pyenv"
+if [[ -d "${PYENV_ROOT}" ]]; then
+    export PATH="${PYENV_ROOT}/bin:$PATH"
+    lazy_load_pyenv() {
+	unset -f pyenv python pip
+	eval "$(pyenv init -)"
 
-# Brew bin
-PATH="${BREW_PREFIX}/bin:${BREW_PREFIX}/bin:${PATH}"
+	if [[ -f "${ZSH}/plugins/pyenv/pyenv.plugin.zsh" ]]; then
+	    source "${ZSH}/plugins/pyenv/pyenv.plugin.zsh"
+	fi
+    }
+    pyenv() { lazy_load_pyenv; pyenv "$@"; }
+    python() { lazy_load_pyenv; python "$@"; }
+    pip() { lazy_load_pyenv; pip "$@"; }
 
-# Set PATH for gnu tools
-PATH="${BREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
-PATH="${BREW_PREFIX}/opt/findutils/libexec/gnubin:${PATH}"
-PATH="${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin:${PATH}"
-PATH="${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${PATH}"
+    alias python3='python'
+    alias pip3='pip'
+fi
 
-# Ruby
-RUBY_VERSION=$(cd ${BREW_PREFIX}/lib/ruby/gems/ && ls --time=creation -t | head -1)
-PATH="${BREW_PREFIX}/lib/ruby/gems/${RUBY_VERSION}/bin:${BREW_PREFIX}/opt/ruby/bin:${PATH}"
+lazy_load_asdf() {
+    unset -f asdf
+    source "$(brew --prefix asdf)/asdf.sh"
+    source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
+}
+asdf() { lazy_load_asdf; asdf "$@"; }
 
-# Set PATH for gpg2
-PATH="/usr/local/MacGPG2/bin:${PATH}"
-
-# Golang
 export GOPATH="/usr/local/Go"
-PATH="/usr/local/Go/bin:${PATH}"
-
-# my bin path
-PATH="${HOME}/.local/bin:${PATH}"
-
 export TERM="screen-256color"
-
-# Set PATH for HammerSpoon CLI
-export PATH="/Applications/Hammerspoon.app/Contents/Frameworks/hs:${PATH}"
-
-# Clean PATH
-export PATH=$(bb -e '(println (clojure.string/join ":" (distinct (clojure.string/split (System/getenv "PATH") #":"))))')
-
-# UTF-8 lang
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-# Less hightlight search
-export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
-export LESS_TERMCAP_me=$'\E[0m'           # end mode
-export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-export LESS_TERMCAP_so=$'\E[38;5;016m\E[48;5;220m'    # begin standout-mode - info box
-export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+if [[ -z "$EDITOR" ]]; then
+    if command -v nvim >/dev/null 2>&1; then
+        export EDITOR="nvim"
+    elif command -v vim >/dev/null 2>&1; then
+        export EDITOR="vim"
+    fi
+fi
 
-# Source functions file
-# source $HOME/.functions.bash
-
-export EDITOR=$(which nvim)
-
-# GPG config
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
-# ASDF config
-if [[ ! -z ${ENABLED_ASDF} ]]; then
-	. $(brew --prefix asdf)/asdf.sh
-	. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
-	PROMPT=$(echo ${PROMPT} | sed -e 's/\[%\*\]/\0 (ASDF)/g')
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;38;5;74m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[38;5;016m\E[48;5;220m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[04;38;5;146m'
+
+export CDK_DEFAULT_REGION=eu-central-1
+export STAGE=dev
+
+export NNN_TMPFILE="${HOME}/.config/nnn/.lastd"
+
+if [[ -z "$TMUX" ]] || [[ "$LOAD_FULL_CONFIG" == "1" ]]; then
+
+    [[ -f "${HOME}/.functions.bash" ]] && source "${HOME}/.functions.bash"
+
+    [[ -f "${HOME}/.alias.bash" ]] && source "${HOME}/.alias.bash"
+
+    [[ -f "${HOME}/.exports.bash" ]] && source "${HOME}/.exports.bash"
 fi
 
-n ()
-{
-    # Block nesting of nnn in subshells
-    [ "${NNNLVL:-0}" -eq 0 ] || {
+n() {
+    [[ "${NNNLVL:-0}" -eq 0 ]] || {
         echo "nnn is already running"
         return
     }
 
-    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
-    # see. To cd on quit only on ^G, remove the "export" and make sure not to
-    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
-    #      NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    export NNN_TMPFILE="${HOME}/.config/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    # The command builtin allows one to alias nnn to n, if desired, without
-    # making an infinitely recursive alias
     command nnn "$@"
 
-    [ ! -f "$NNN_TMPFILE" ] || {
-        . "$NNN_TMPFILE"
-        rm -f "$NNN_TMPFILE" > /dev/null
+    [[ ! -f "$NNN_TMPFILE" ]] || {
+        source "$NNN_TMPFILE"
+        rm -f "$NNN_TMPFILE" >/dev/null 2>&1
     }
 }
-
-# NVM config
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# AWS Useful
-export AWS_PROFILE=ewego-stage
-export CDK_DEFAULT_ACCOUNT=ewego-stage
-export CDK_DEFAULT_REGION=eu-central-1
-export STAGE=dev
-PROMPT=$(echo ${PROMPT} | sed -e 's/\[%\*\]/(${AWS_PROFILE}\/${STAGE}) \0/g')
-
-# Useful functions
-if [[ -f ${HOME}/.functions.bash ]]; then
-	. ${HOME}/.functions.bash
-fi
-
-# Useful alias
-if [[ -f ${HOME}/.alias.bash ]]; then
-	. ${HOME}/.alias.bash
-fi
-
-# Useful exports
-if [[ -f ${HOME}/.exports.bash ]]; then
-	. ${HOME}/.exports.bash
-fi

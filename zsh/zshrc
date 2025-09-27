@@ -64,7 +64,6 @@ DISABLE_AUTO_TITLE="true"
 plugins=(
   git
   colorize
-  pyenv
 )
 
 source $ZSH/oh-my-zsh.sh
