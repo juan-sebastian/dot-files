@@ -72,14 +72,6 @@ return {
   },
   { "tpope/vim-obsession" },
   { "bakpakin/fennel.vim" },
-  {
-    "github/copilot.vim",
-    config = function()
-      vim.g.copilot_filetypes = {
-        ["gitcommit"] = true,
-      }
-    end,
-  },
   { "MunifTanjim/nui.nvim" },
   {
     "piersolenski/wtf.nvim",
