@@ -12,5 +12,6 @@
   ],
   "sumneko-lua.enableNvimLuaDev": true,
   "java.import.gradle.java.home": "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home",
-  "svelte.enable-ts-plugin": true
+  "svelte.enable-ts-plugin": true,
+  "editorconfig.enable": true
 }
