@@ -20,3 +20,13 @@ end
 
 require("config.options")
 require("config.lazy")
+
+
+-- autocmds
+
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = {".zprofile", "zprofile"},
+  callback = function()
+    vim.cmd("set filetype=zsh syntax=zsh")
+  end,
+})
