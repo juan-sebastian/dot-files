@@ -23,10 +23,6 @@ return {
     lazy = false,
   },
   {
-    "preservim/nerdcommenter",
-    event = "BufReadPost",
-  },
-  {
     "sjl/gundo.vim",
     config = function()
       vim.g.gundo_prefer_python3 = 1
