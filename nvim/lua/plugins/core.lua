@@ -16,13 +16,6 @@ return {
     end,
   },
   {
-    "nanotech/jellybeans.vim",
-    config = function()
-      vim.cmd("colorscheme jellybeans")
-    end,
-    lazy = false,
-  },
-  {
     "sjl/gundo.vim",
     config = function()
       vim.g.gundo_prefer_python3 = 1
